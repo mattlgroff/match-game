@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import Card from './Card';
+import Card from '../Card';
+import "./Game.css";
 
 function initialCards() {
   return [
@@ -25,7 +26,8 @@ export default class Game extends Component {
       cards: initialCards(),
       lastCard: null,
       locked: false,
-      matches: 0
+      matches: 0,
+      incorrect: 0
     };
   }
 
@@ -34,9 +36,17 @@ export default class Game extends Component {
       return;
     }
 
+    if (this.state.incorrect > 2) {
+      return;
+    }
+
     var cards = this.state.cards;
     cards[id].flipped = true;
     this.setState({cards, locked: true});
+
+    if(this.state.incorrect > 4){
+      alert("You lose! Press reset to start over.");
+    }
     if (this.state.lastCard) {
       if (value === this.state.lastCard.value) {
         var matches = this.state.matches;
@@ -44,6 +54,7 @@ export default class Game extends Component {
         cards[this.state.lastCard.id].matched = true;
         this.setState({cards, lastCard: null, locked: false, matches: matches + 1});
       } else {
+        this.setState({incorrect: this.state.incorrect + 1});
         setTimeout(() => {
           cards[id].flipped = false;
           cards[this.state.lastCard.id].flipped = false;
@@ -77,7 +88,8 @@ export default class Game extends Component {
       cards: initialCards(),
       lastCard: null,
       locked: false,
-      matches: 0
+      matches: 0,
+      incorrect: 0
     });
   }
 
@@ -86,12 +98,16 @@ export default class Game extends Component {
     if (this.state.matches === this.state.cards.length / 2) {
       btnText = 'You Win! Play Again?';
     }
+    if (this.state.incorrect > 2) {
+      btnText = 'You Lose! Play Again?';
+    }
     return (
       <div className="Game container main">
-        <div className="row">
+        <div className="row gameBg">
           {this.renderCards(this.state.cards)}
         </div>
-        <button onClick={this.reset}>{btnText}</button>
+        <button id="resetBtn" class="btn btn-primary" onClick={this.reset}>{btnText}</button>
+        <h3 id="guesses">Incorrect Guesses: {this.state.incorrect} / 3</h3>
       </div>
     );
   }

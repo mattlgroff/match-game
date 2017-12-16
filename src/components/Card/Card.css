@@ -1,3 +1,8 @@
 .cardContainer {
-  background: blue;
+  /*background: blue;*/
+}
+
+.pokemon {
+  margin-top: 40px;
+  margin-bottom: 20px;
 }

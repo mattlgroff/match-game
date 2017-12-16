@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import "./Card.css";
-import classnames from 'classnames';
 
 export default class Card extends Component {
   constructor(props) {
@@ -15,13 +14,6 @@ export default class Card extends Component {
   }
 
   render() {
-    var classes = classnames(
-      'Card',
-      {'Card--flipped': this.props.flipped},
-      {'Card--matched': this.props.matched}
-    );
-
-    var cardValue = this.props.flipped ? this.props.value : '';
 
     let cardImg = "/assets/images/pokeball.png";
 
@@ -31,7 +23,7 @@ export default class Card extends Component {
 
     return (
       <div className="col-sm-6 col-xs-6 col-md-6 col-lg-6 cardContainer text-center">
-        <img className="img-fluid" onClick={this.handleClick} src={cardImg} />
+        <img className="pokemon" alt="card" onClick={this.handleClick} src={cardImg} />
       </div>  
     );
   }
