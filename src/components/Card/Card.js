@@ -14,11 +14,12 @@ export default class Card extends Component {
   }
 
   render() {
-
-    let cardImg = "/assets/images/pokeball.png";
+    // let cardImg = `https://github.com/mattlgroff/match-game/blob/gh-pages/assets/images/pokeball.png`
+    let cardImg = "./assets/images/pokeball.png";
 
     if(this.props.flipped){
-      cardImg = `/assets/images/${this.props.value}.gif`;
+      // cardImg = `https://github.com/mattlgroff/match-game/blob/gh-pages/assets/images/${this.props.value}.gif`
+      cardImg = `./assets/images/${this.props.value}.gif`;
     } 
 
     return (
