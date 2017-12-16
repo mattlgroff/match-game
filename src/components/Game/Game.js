@@ -106,7 +106,7 @@ export default class Game extends Component {
         <div className="row gameBg">
           {this.renderCards(this.state.cards)}
         </div>
-        <button id="resetBtn" class="btn btn-primary" onClick={this.reset}>{btnText}</button>
+        <button id="resetBtn" className="btn btn-primary" onClick={this.reset}>{btnText}</button>
         <h3 id="guesses">Incorrect Guesses: {this.state.incorrect} / 3</h3>
       </div>
     );
